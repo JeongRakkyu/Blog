@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TAMAGO`s BLOG</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            header {
+                float: right;
+                width: calc(100% - 200px);
+                height: 100px;
+                background-color: black;
+                color: white;
+            }
+            header p {
+                padding: 25px;
+            }
+            nav {
+                position: fixed;
+                float: left;
+                width: 190px;
+                height: 100vh;
+                background-color: white;
+                border-right: 10px solid rgb(255, 230, 182);
+            }
+            article {
+                float: right;
+                width: calc(100% - 200px);
+                height: 80vh;
+                border-bottom: 1px solid black;
+            }
+            #subject {
+                border-bottom: 1px solid black;
+                height: 25px;
+                padding: 10px;
+            }
+            #content {
+                padding: 10px;
+            }
+            section {
+                float: right;
+                width: calc(100% - 200px);
+                height: 20vh;
+                border-bottom: 1px solid black;
+            }
+            footer {
+                float: right;
+                width: calc(100% - 200px);
+                background-color: lightskyblue;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <p>TAMAGO's BLOG</p>
+        </header>
+        <nav>
+            목록
+        </nav>
+        <article>
+            <?php
+                include ('X');
+                $idx = $_GET['idx'];
+                $find = $sql_connection->query("SELECT * FROM X WHERE X = '$idx'")->fetch_assoc();
+                $sql_connection->close();
+                $subject = $find['X'];
+                $content = $find['X'];
+                echo "<div id='subject'>$subject</div>";
+                echo "<div id='content'>$content</div>";
+            ?>
+        </article>
+        <section>
+            <?php
+            include ('X');
+            $sql = "SELECT X, X FROM X";
+            $result = $sql_connection->query($sql);
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $idx = $row['X'];
+                    $sub = $row['X'];
+                    echo "<p><a href='bbs.html?idx=$idx'>$sub</a></p>";
+                }
+            }
+            $sql_connection->close();
+            ?>
+        </section>
+        <footer>
+           정보
+        </footer>
+    </body>
+</html>

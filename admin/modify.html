@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<?php
+    session_start();
+    if (!isset($_SESSION['id'])) {
+        echo "<script>alert('정상적인 접근이 아닙니다!');location.replace('../');</script>";
+        exit;
+    }
+    $id = $_SESSION['id'];
+?>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TAMAGO`s BLOG</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            header {
+                float: right;
+                width: calc(100% - 200px);
+                height: 100px;
+                background-color: black;
+                color: white;
+            }
+            header p {
+                padding: 25px;
+            }
+            nav {
+                position: fixed;
+                float: left;
+                width: 190px;
+                height: 100vh;
+                background-color: white;
+                border-right: 10px solid rgb(255, 230, 182);
+            }
+            article {
+                float: right;
+                width: calc(100% - 200px);
+                height: 80vh;
+                border-bottom: 1px solid black;
+            }
+            section {
+                float: right;
+                width: calc(100% - 200px);
+                height: 20vh;
+                border-bottom: 1px solid black;
+            }
+            footer {
+                float: right;
+                width: calc(100% - 200px);
+                height: 100px;
+                background-color: lightskyblue;
+            }
+            article form {
+                padding-left: 20px;
+            }
+            #subject {
+                width: 500px;
+            }
+            #content {
+                width: 500px;
+                height: 30vh;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <p>TAMAGO's BLOG</p>
+        </header>
+        <nav>
+            <a href="editor.html"><p>글 작성</p></a>
+            <a href="modify_select.html"><p>글 수정 / 삭제</p></a>
+            <a href="logout.php"><p>로그아웃</p></a>
+        </nav>
+        <article>
+            <?php
+                $selected = $_GET['idx'];
+                
+                include ('X');
+                $sql = "SELECT X FROM X WHERE X = '$selected'";
+                $result = $sql_connection->query($sql);
+                $row = $result->fetch_assoc();
+
+                $subject = $row['X'];
+                $content = $row['X'];
+            ?>
+            <form method="post" action="modify.php?idx=<?php echo $selected;?>">
+                <p>글 수정</p>
+                <div id="subjectContainer">
+                    <p>제목</p>
+                    <input id="subject" type="text" name="subject" value="<?php echo $subject;?>">
+                </div>
+                <div id="contentContainer">
+                    <p>내용</p>
+                    <textarea id="content" name="content"><?php echo $content;?></textarea>
+                </div>
+                <input type="button" value="수정" onclick="mod()">
+                <input type="button" value="삭제" onclick="del()">
+            </form>
+            <script>
+                var form = document.getElementsByTagName("form")[0];
+                function mod() {
+                    if (confirm("정말로 수정하시겠습니까?") == true) {
+                        form.action = "modify.php?idx=<?php echo $selected;?>";
+                    form.submit();
+                    }
+                }
+                function del() {
+                    if (confirm("정말로 삭제하시겠습니까?") == true) {
+                        form.action = "delete.php?idx=<?php echo $selected;?>";
+                        form.submit();
+                    }
+                }
+            </script>
+        </article>
+        <footer>
+           정보
+        </footer>
+    </body>
+</html>
