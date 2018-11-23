@@ -11,65 +11,39 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TAMAGO`s BLOG</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-            }
-            header {
-                float: right;
-                width: calc(100% - 200px);
-                height: 100px;
-                background-color: black;
-                color: white;
-            }
-            header p {
-                padding: 25px;
-            }
-            nav {
-                position: fixed;
-                float: left;
-                width: 190px;
-                height: 100vh;
-                background-color: white;
-                border-right: 10px solid rgb(255, 230, 182);
-            }
-            article {
-                float: right;
-                width: calc(100% - 200px);
-                height: 80vh;
-                border-bottom: 1px solid black;
-            }
-            section {
-                float: right;
-                width: calc(100% - 200px);
-                height: 20vh;
-                border-bottom: 1px solid black;
-            }
-            footer {
-                float: right;
-                width: calc(100% - 200px);
-                background-color: lightskyblue;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="../css/blog.css">
     </head>
     <body>
         <header>
-            <p>TAMAGO's BLOG</p>
+            <img src="../img/logo3.png">
+            <h1><a href="/">TAMAGO`s BLOG</a></h1>
         </header>
         <nav>
-            <a href="editor.html"><p>글 작성</p></a>
-            <a href="modify_select.html"><p>글 수정 / 삭제</p></a>
-            <a href="logout.php"><p>로그아웃</p></a>
+            <ul id="menu">
+                <li class="link">
+                    <a href="editor.html" onmouseover="this.children[0].src= '../img/logo2.png'" onmouseout="this.children[0].src='../img/logo1.png'">
+                        <img class="icon" src="../img/logo1.png" alt="WRITE, Egg under the flower"> WRITE
+                    </a>
+                </li>
+                <li class="link">
+                    <a href="modify_select.html" onmouseover="this.children[0].src='../img/logo2.png'" onmouseout="this.children[0].src='../img/logo1.png'">
+                        <img class="icon" src="../img/logo1.png" alt="CSS, Egg under the flower"> MODIFY / DELETE
+                    </a>
+                </li>
+                <li class="link">
+                    <a href="javascript.html" onmouseover="this.children[0].src='../img/logo2.png'" onmouseout="this.children[0].src='../img/logo1.png'">
+                        <img class="icon" src="../img/logo1.png" alt="JAVASCRIPT, Egg under the flower"> LOGOUT
+                    </a>
+                </li>
+            </ul>
         </nav>
-        <article>
-        </article>
         <section>
-            글 제목
+            <article id="main">
+            </article>
+            <article id="sub">
+            </article>
         </section>
         <footer>
-           정보
+            <p>&lt; COPYRIGHT 2018 JeongRakkyu ALL RIGHT RESERVED. &gt;</p>
         </footer>
-    </body>
 </html>

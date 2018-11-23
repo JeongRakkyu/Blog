@@ -11,53 +11,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TAMAGO`s BLOG</title>
+        <link rel="stylesheet" type="text/css" href="../css/blog.css">
         <style>
-            body {
-                margin: 0;
-                padding: 0;
-            }
-            header {
-                float: right;
-                width: calc(100% - 200px);
-                height: 100px;
-                background-color: black;
-                color: white;
-            }
-            header p {
-                padding: 25px;
-            }
-            nav {
-                position: fixed;
-                float: left;
-                width: 190px;
-                height: 100vh;
-                background-color: white;
-                border-right: 10px solid rgb(255, 230, 182);
-            }
-            article {
-                float: right;
-                width: calc(100% - 200px);
-                height: 80vh;
-                border-bottom: 1px solid black;
-            }
-            section {
-                float: right;
-                width: calc(100% - 200px);
-                height: 20vh;
-                border-bottom: 1px solid black;
-            }
-            footer {
-                float: right;
-                width: calc(100% - 200px);
-                height: 100px;
-                background-color: lightskyblue;
-            }
             article form {
                 padding-left: 20px;
+                padding-top: 20px;
             }
             #subject {
-                width: 500px;
+                width: 393px;
             }
             #content {
                 width: 500px;
@@ -67,29 +28,55 @@
     </head>
     <body>
         <header>
-            <p>TAMAGO's BLOG</p>
+            <img src="../img/logo3.png">
+            <h1><a href="/">TAMAGO`s BLOG</a></h1>
         </header>
         <nav>
-            <a href="editor.html"><p>글 작성</p></a>
-            <a href="modify_select.html"><p>글 수정 / 삭제</p></a>
-            <a href="logout.php"><p>로그아웃</p></a>
+            <ul id="menu">
+                <li class="link">
+                    <a href="editor.html" onmouseover="this.children[0].src= '../img/logo2.png'" onmouseout="this.children[0].src='../img/logo1.png'">
+                        <img class="icon" src="../img/logo1.png"> WRITE
+                    </a>
+                </li>
+                <li class="link">
+                    <a href="modify_select.html" onmouseover="this.children[0].src='../img/logo2.png'" onmouseout="this.children[0].src='../img/logo1.png'">
+                        <img class="icon" src="../img/logo1.png"> MODIFY / DELETE
+                    </a>
+                </li>
+                <li class="link">
+                    <a href="logout.php" onmouseover="this.children[0].src='../img/logo2.png'" onmouseout="this.children[0].src='../img/logo1.png'">
+                        <img class="icon" src="../img/logo1.png"> LOGOUT
+                    </a>
+                </li>
+            </ul>
         </nav>
-        <article>
-            <form method="post" action="write.php">
-                <p>글 작성</p>
-                <div id="subjectContainer">
-                    <p>제목</p>
-                    <input id="subject" type="text" name="subject">
-                </div>
-                <div id="contentContainer">
-                    <p>내용</p>
-                    <textarea id="content" name="content"></textarea>
-                </div>
-                <input type="submit" value="작성">
-            </form>
-        </article>
+        <section>
+            <article id="main">
+                <form method="post" action="write.php">
+                    <p>글 작성</p>
+                    <div id="subjectContainer">
+                        <p>제목</p>
+                        <input id="subject" type="text" name="subject">
+                        <select name="category">
+                            <option value="html" selected>HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="javascript">JAVASCRIPT</option>
+                            <option value="php">PHP</option>
+                            <option value="picture">PICTURE</option>
+                        </select>
+                    </div>
+                    <div id="contentContainer">
+                        <p>내용</p>
+                        <textarea id="content" name="content"></textarea>
+                    </div>
+                    <input type="submit" value="작성">
+                </form>
+            </article>
+            <article id="sub">
+            </article>
+        </section>
         <footer>
-           정보
+            <p>&lt; COPYRIGHT 2018 JeongRakkyu ALL RIGHT RESERVED. &gt;</p>
         </footer>
     </body>
 </html>
