@@ -4,15 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/blog.css">
-        <style>
-            #sub img {
-                margin: 30px 40px;
-            }
-            #sub p {
-                margin: 5px;
-                padding: 0 10px;
-            }
-        </style>
     </head>
     <body>
         <header>
@@ -50,25 +41,46 @@
         </nav>
         <section>
             <article id="main">
-                <p>Portfolio</p>
+                <?php
+                    include ('X');
+                    if (isset($_GET['idx'])) {
+                        $idx = $_GET['idx'];
+                        $find = $X->query("SELECT * FROM X WHERE X = '$idx'")->fetch_assoc();
+                        $X->close();
+    
+                        $subject = $find['X'];
+                        $content = $find['X'];
+                    } else {
+                        $find = $X->query("SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC")->fetch_assoc();
+                        $X->close();
+
+                        $subject = $find['X'];
+                        $content = $find['X'];
+                    }
+
+                    echo "<div id='subject'>$subject</div>";
+                    echo "<div id='content'>$content</div>";
+                ?>
             </article>
             <article id="sub">
-                <p>Contact</p>
-                <a id="profile-link" href="https://github.com/JeongRakkyu" target="_blank">
-                    <img id="github" src="img/wocto.png">
-                </a>
+                <p>JAVASCRIPT 카테고리의 글</p>
+                <?php
+                    include ('X');
+                    $sql = "SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC";
+                    $result = $X->query($sql);
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $idx = $row['X'];
+                            $sub = $row['X'];
+                            echo "<p><a href='javascript.html?idx=$idx'>$sub</a></p>";
+                        }
+                    }
+                    $X->close();
+                ?>
             </article>
         </section>
         <footer>
             <p>&lt; COPYRIGHT 2018 JeongRakkyu ALL RIGHT RESERVED. &gt;</p>
         </footer>
-        <script>
-            document.getElementById("github").addEventListener("mouseover", function(){
-                document.getElementById("github").src = "img/bocto.png";
-            });
-            document.getElementById("github").addEventListener("mouseout", function(){
-                document.getElementById("github").src = "img/wocto.png";
-            });
-        </script>
     </body>
 </html>
