@@ -6,13 +6,17 @@
     }
     $id = $_SESSION['id'];
 
-    include ('X');
+    include ('config.php');
 
     $subject = $_POST['subject'];
     $content = $_POST['content'];
-    $query = "INSERT INTO X(X) VALUES('$subject', '$content')";
+    $category = $_POST['category'];
+    $date = date("Y-m-d H:i:s");
+    $query = "INSERT INTO X(X, X, X, X) VALUES('$subject', '$content', '$category', '$date')";
 
-    if ($sql_connection->query($query)) {
-        echo "<script>alert('정상적으로 등록되었습니다.'); location.replace('/');</script>";
+    if ($sql_connection->query($query) === TRUE) {
+        echo "<script>alert('정상적으로 등록되었습니다.'); location.replace('/admin');</script>";
+    } else {
+        echo "Error : " . $sql_connection->error;
     }
 ?>

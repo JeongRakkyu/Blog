@@ -6,14 +6,12 @@
     }
     $id = $_SESSION['id'];
 
-    $modified_subject = $_POST['subject'];
-    $modified_content = $_POST['content'];
     $idx = $_GET['idx'];
-    include ('X');
+    include ('config.php');
 
     $sql = "DELETE FROM X WHERE X = '$idx'";
 
     if ($sql_connection->query($sql)) {
-        echo "<script>alert('정상적으로 삭제되었습니다.'); location.replace('index.html');</script>";
+        echo "<script>alert('정상적으로 삭제되었습니다.'); location.replace('/admin');</script>";
     }
 ?>
