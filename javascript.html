@@ -4,37 +4,53 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/blog.css">
+        <style>
+            #subject {
+                width: 80%;
+                border-bottom: 4px double rgb(29, 112, 163);
+                border-top: 3px solid rgb(29, 112, 163);
+                margin: 0 10%;
+                margin-top: 10px;
+                padding: 10px;
+            }
+            #content {
+                width: 80%;
+                margin: 0 10%;
+                margin-top: 10px;
+                padding: 10px;
+            }
+        </style>
     </head>
     <body>
         <header>
             <img src="img/logo3.png">
-            <h1>TAMAGO`s BLOG</h1>
+            <h1><a href="/">TAMAGO`s BLOG</a></h1>
         </header>
         <nav>
             <ul id="menu">
                 <li class="link">
                     <a href="html.html" onmouseover="this.children[0].src= 'img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> HTML
+                        <img class="icon" src="img/logo1.png" alt="HTML, Egg under the flower"> HTML
                     </a>
                 </li>
                 <li class="link">
                     <a href="css.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> CSS
+                        <img class="icon" src="img/logo1.png" alt="CSS, Egg under the flower"> CSS
                     </a>
                 </li>
                 <li class="link">
                     <a href="javascript.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> JAVASCRIPT
+                        <img class="icon" src="img/logo1.png" alt="JAVASCRIPT, Egg under the flower"> JAVASCRIPT
                     </a>
                 </li>
                 <li class="link">
                     <a href="php.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> PHP
+                        <img class="icon" src="img/logo1.png" alt="PHP, Egg under the flower"> PHP
                     </a>
                 </li>
                 <li class="link">
                     <a href="picture.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> PICTURE
+                        <img class="icon" src="img/logo1.png" alt="PICTURE, Egg under the flower"> PICTURE
                     </a>
                 </li>
             </ul>
@@ -42,17 +58,17 @@
         <section>
             <article id="main">
                 <?php
-                    include ('X');
+                    include ('admin/config.php');
                     if (isset($_GET['idx'])) {
                         $idx = $_GET['idx'];
-                        $find = $X->query("SELECT * FROM X WHERE X = '$idx'")->fetch_assoc();
-                        $X->close();
+                        $find = $sql_connection->query("SELECT * FROM X WHERE X = '$idx'")->fetch_assoc();
+                        $sql_connection->close();
     
                         $subject = $find['X'];
                         $content = $find['X'];
                     } else {
-                        $find = $X->query("SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC")->fetch_assoc();
-                        $X->close();
+                        $find = $sql_connection->query("SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC")->fetch_assoc();
+                        $sql_connection->close();
 
                         $subject = $find['X'];
                         $content = $find['X'];
@@ -65,9 +81,9 @@
             <article id="sub">
                 <p>JAVASCRIPT 카테고리의 글</p>
                 <?php
-                    include ('X');
+                    include ('admin/config.php');
                     $sql = "SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC";
-                    $result = $X->query($sql);
+                    $result = $sql_connection->query($sql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             $idx = $row['X'];
@@ -75,7 +91,7 @@
                             echo "<p><a href='javascript.html?idx=$idx'>$sub</a></p>";
                         }
                     }
-                    $X->close();
+                    $sql_connection->close();
                 ?>
             </article>
         </section>
