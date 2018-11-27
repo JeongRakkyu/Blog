@@ -9,8 +9,8 @@
                 width: 80%;
                 border-bottom: 4px double rgb(29, 112, 163);
                 border-top: 3px solid rgb(29, 112, 163);
-                margin: 0 10%;
                 margin-top: 10px;
+                margin-left: 10%;
                 padding: 10px;
             }
             #content {
@@ -58,40 +58,17 @@
         <section>
             <article id="main">
                 <?php
-                    include ('admin/config.php');
-                    if (isset($_GET['idx'])) {
-                        $idx = $_GET['idx'];
-                        $find = $sql_connection->query("SELECT * FROM X WHERE X = '$idx'")->fetch_assoc();
-                        $sql_connection->close();
-    
-                        $subject = $find['X'];
-                        $content = $find['X'];
-                    } else {
-                        $find = $sql_connection->query("SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC")->fetch_assoc();
-                        $sql_connection->close();
-
-                        $subject = $find['X'];
-                        $content = $find['X'];
-                    }
-
-                    echo "<div id='subject'>$subject</div>";
-                    echo "<div id='content'>$content</div>";
+                    include ('php/main.php');
+                    $main = new Main($_GET['idx']);
+                    $main->load();
                 ?>
             </article>
-            <article id="sub">
+            <article id="recent">
                 <p>JAVASCRIPT 카테고리의 글</p>
                 <?php
-                    include ('admin/config.php');
-                    $sql = "SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC";
-                    $result = $sql_connection->query($sql);
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            $idx = $row['X'];
-                            $sub = $row['X'];
-                            echo "<p><a href='javascript.html?idx=$idx'>$sub</a></p>";
-                        }
-                    }
-                    $sql_connection->close();
+                    include ('php/recent.php');
+                    $rec = new Recent_text();
+                    $rec->load();
                 ?>
             </article>
         </section>
