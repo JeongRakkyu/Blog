@@ -9,7 +9,7 @@
         
         function __construct() {
             include ('X');
-            $this->query = "SELECT X, subject, X FROM X WHERE X = 'javascript' ORDER BY X DESC";
+            $this->query = "SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC";
             $this->recent = $sql_connection->query($this->query);
             $sql_connection->close();
         }
