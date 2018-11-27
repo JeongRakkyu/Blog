@@ -70,13 +70,22 @@ section {
     top: 160px;
     left: calc(70% - 16px);
     width: calc(30% + 16px);
-    height: 100vh;
+    height: 40vh;
     z-index: 2;
     background-color: rgb(173, 217, 220);
 }
 #recent a {
     text-decoration: none;
     color: black;
+}
+#thinking {
+    position: absolute;
+    top: calc(40vh + 160px);
+    left: calc(70% - 16px);
+    width: calc(30% + 16px);
+    height: 60vh;
+    z-index: 2;
+    background-color: rgb(29, 112, 163);
 }
 footer {
     display: block;
