@@ -10,13 +10,13 @@
         function __construct($idx) {
             $this->idx = $idx;
             if (isset($this->idx)) {
-                include ('X');
+                include ('config.php');
                 $this->query = "SELECT X FROM X WHERE X = '$this->idx'";
                 $this->recent = $sql_connection->query($this->query)->fetch_assoc();
                 $sql_connection->close();
             } else {
-                include ('X');
-                $this->query = "SELECT X FROM X WHERE X = 'javascript' ORDER BY X DESC";
+                include ('config.php');
+                $this->query = "SELECT X FROM open WHERE X = 'javascript' ORDER BY X DESC";
                 $this->recent = $sql_connection->query($this->query)->fetch_assoc();
                 $sql_connection->close();
             }
