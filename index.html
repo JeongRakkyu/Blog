@@ -5,57 +5,69 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/blog.css">
         <style>
-            #sub img {
-                margin: 30px 40px;
+            #subject {
+                width: 80%;
+                border-bottom: 4px double rgb(29, 112, 163);
+                border-top: 3px solid rgb(29, 112, 163);
+                margin-top: 10px;
+                margin-left: 10%;
+                padding: 10px;
             }
-            #sub p {
-                margin: 5px;
-                padding: 0 10px;
+            .date {
+                font-size: 12px;
+                padding-left: 7px;
+            }
+            #content {
+                width: 80%;
+                margin: 0 10%;
+                margin-top: 10px;
+                padding: 10px;
             }
         </style>
     </head>
     <body>
         <header>
-            <img src="img/logo3.png">
-            <h1>TAMAGO`s BLOG</h1>
+            <h1><a href="/"><img src="img/logo3.png"> TAMAGO`s BLOG</a></h1>
         </header>
         <nav>
             <ul id="menu">
                 <li class="link">
                     <a href="html.html" onmouseover="this.children[0].src= 'img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> HTML
+                        <img class="icon" src="img/logo1.png" alt="HTML, Egg under the flower"> HTML
                     </a>
                 </li>
                 <li class="link">
                     <a href="css.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> CSS
+                        <img class="icon" src="img/logo1.png" alt="CSS, Egg under the flower"> CSS
                     </a>
                 </li>
                 <li class="link">
                     <a href="javascript.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> JAVASCRIPT
+                        <img class="icon" src="img/logo1.png" alt="JAVASCRIPT, Egg under the flower"> JAVASCRIPT
                     </a>
                 </li>
                 <li class="link">
                     <a href="php.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> PHP
+                        <img class="icon" src="img/logo1.png" alt="PHP, Egg under the flower"> PHP
                     </a>
                 </li>
                 <li class="link">
                     <a href="picture.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
-                        <img class="icon" src="img/logo1.png"> PICTURE
+                        <img class="icon" src="img/logo1.png" alt="PICTURE, Egg under the flower"> PICTURE
                     </a>
                 </li>
             </ul>
         </nav>
         <section>
             <article id="main">
-                <p>Portfolio</p>
+                <p style="padding-left: 30px; padding-top: 20px;">COMMIT HEATMAP</p>
+                <div id="heatmap"></div>
             </article>
-            <article id="sub">
-                <p>Contact</p>
+            <article id="recent">
+            </article>
+            <article id="thinking">
                 <a id="profile-link" href="https://github.com/JeongRakkyu" target="_blank">
-                    <img id="github" src="img/wocto.png">
+                    <img id="github" src="img/wocto.png" alt="Octocat, Connect to github">
                 </a>
             </article>
         </section>
@@ -63,6 +75,21 @@
             <p>&lt; COPYRIGHT 2018 JeongRakkyu ALL RIGHT RESERVED. &gt;</p>
         </footer>
         <script>
+            var aa;
+            function ajax() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("heatmap").innerHTML = JSON.parse(this.response).join("\n");
+                        console.log(JSON.parse(this.response));
+                    }
+                };
+                xhttp.open("POST", "test.php", true);
+                xhttp.send();
+            }
+            addEventListener("load", function () {
+                ajax();
+            });
             document.getElementById("github").addEventListener("mouseover", function(){
                 document.getElementById("github").src = "img/bocto.png";
             });
