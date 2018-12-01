@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/blog.css">
         <style>
+            #main p {
+                padding-left: 30px;
+                padding-top: 20px;
+            }
             #subject {
                 width: 80%;
                 border-bottom: 4px double rgb(29, 112, 163);
@@ -56,11 +60,16 @@
                         <img class="icon" src="img/logo1.png" alt="PICTURE, Egg under the flower"> PICTURE
                     </a>
                 </li>
+                <li class="link">
+                    <a href="dpe.html" onmouseover="this.children[0].src='img/logo2.png'" onmouseout="this.children[0].src='img/logo1.png'">
+                        <img class="icon" src="img/logo1.png" alt="PICTURE, Egg under the flower"> 정보처리기사
+                    </a>
+                </li>
             </ul>
         </nav>
         <section>
             <article id="main">
-                <p style="padding-left: 30px; padding-top: 20px;">COMMIT HEATMAP</p>
+                <p>COMMIT HEATMAP</p>
                 <div id="heatmap"></div>
             </article>
             <article id="recent">
@@ -75,7 +84,13 @@
             <p>&lt; COPYRIGHT 2018 JeongRakkyu ALL RIGHT RESERVED. &gt;</p>
         </footer>
         <script>
-            var aa;
+            document.getElementById("github").addEventListener("mouseover", function(){
+                document.getElementById("github").src = "img/bocto.png";
+            });
+            document.getElementById("github").addEventListener("mouseout", function(){
+                document.getElementById("github").src = "img/wocto.png";
+            });
+
             function ajax() {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
@@ -84,18 +99,10 @@
                         console.log(JSON.parse(this.response));
                     }
                 };
-                xhttp.open("POST", "test.php", true);
+                xhttp.open("POST", "php/test.php", true);
                 xhttp.send();
             }
-            addEventListener("load", function () {
-                ajax();
-            });
-            document.getElementById("github").addEventListener("mouseover", function(){
-                document.getElementById("github").src = "img/bocto.png";
-            });
-            document.getElementById("github").addEventListener("mouseout", function(){
-                document.getElementById("github").src = "img/wocto.png";
-            });
+            ajax();
         </script>
     </body>
 </html>
